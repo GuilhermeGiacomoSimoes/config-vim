@@ -7,4 +7,5 @@ filetype plugin on
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
-set noexpandtab 
+set noexpandtab
+set relativenumber 
