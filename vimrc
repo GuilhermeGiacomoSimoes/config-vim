@@ -10,3 +10,4 @@ set shiftwidth=4
 set noexpandtab
 set relativenumber
 set noswapfile 
+let g:netrw_liststyle = 4
