@@ -6,10 +6,13 @@
 
 
 - Finally, start Vim and prompt vim-plug to install the plugins listed in ~/.vimrc:
+	<br>
 	:PlugInstall
 
 - Update plugins with vim-plug
+	<br>
 	:PlugUpdate
 
 - Restore plugins
+	<br>
 	:PlugSnapshot ~/vim-plug.list
