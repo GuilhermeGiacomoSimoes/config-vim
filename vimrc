@@ -27,6 +27,8 @@ let g:gitgutter_async=0
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 call plug#begin()
 	Plug 'terryma/vim-multiple-cursors'
+	Plug 'wOrp/ale'
+	Plug 'skaji/syntax-check-perl'
 call plug#end()
 
 highlight! link SignColumn LineNr
@@ -36,3 +38,7 @@ let g:gitgutter_set_sign_backgrounds = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+let g:ale_linters = { 'perl' : ['perl'] }
+let g:ale_perl_perl_executable =  g:plug_home . '/syntax-check-perl/syntax-check'
+let g:ale_perl_perl_options = '%s'
