@@ -20,7 +20,7 @@
 	git clone https://tpope.io/vim/surround.git
 	vim -u NONE -c "helptags surround/doc" -c q
 
-## To install surround.vim
+## To install ALE 
 	mkdir -p ~/.vim/pack/git-plugins/start
 	git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.vim/pack/git-plugins/start/ale
 
