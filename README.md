@@ -1,5 +1,12 @@
 # my config vim
 
+## To install syntax Swift
+	cd ~/.vim/bundle && \
+	git clone --depth=1 https://github.com/vim-syntastic/syntastic.git
+	
+	cd ~/.vim/bundle && \
+	git clone --depth=1 https://github.com/keith/swift.vim
+
 ## To install vim-plug
 	$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
