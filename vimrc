@@ -29,6 +29,7 @@ call plug#begin()
 	Plug 'terryma/vim-multiple-cursors'
 	Plug 'wOrp/ale'
 	Plug 'skaji/syntax-check-perl'
+	Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 
 highlight! link SignColumn LineNr
@@ -42,3 +43,7 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 let g:ale_linters = { 'perl' : ['perl'] }
 let g:ale_perl_perl_executable =  g:plug_home . '/syntax-check-perl/syntax-check'
 let g:ale_perl_perl_options = '%s'
+
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
