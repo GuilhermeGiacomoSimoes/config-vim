@@ -1,5 +1,13 @@
 # my config vim
 
+## apply theme dark 
+	mkdir -p ~/.vim/pack/themes/start
+	cd ~/.vim/pack/themes/start
+	git clone https://github.com/dracula/vim.git dracula
+	EDIT THE ~/vimrc
+		packadd! dracula
+		syntax enable
+		colorscheme dracula
 ## To neovim
 	vim ~/.config/nvim/init.vim
 	paste: 
