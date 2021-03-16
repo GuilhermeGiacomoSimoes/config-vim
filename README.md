@@ -1,5 +1,16 @@
 # my config vim
 
+## To neovim
+	vim ~/.config/nvim/init.vim
+	paste: 
+		set runtimepath^=~/.vim runtimepath+=~/.vim/after
+		let &packpath=&runtimepath
+		source ~/.vimrc
+
+## To install pathogen 
+	mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
 ## To install syntax Swift
 	cd ~/.vim/bundle && \
 	git clone --depth=1 https://github.com/vim-syntastic/syntastic.git
