@@ -16,13 +16,26 @@ set noswapfile
 set path+=**
 set wildmenu
 set updatetime=100
+set autowrite
+set inccommand=split
 
+let g:auto_save_silent = 1
+let g:auto_save = 1
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2 
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 let g:gitgutter_async=0
+let mapleader="\<space>"
+
+nnoremap <leader>; A; <esc>
+nnoremap <leader>, A, <esc>
+
+set clipboard+=unnamedplus
+
+syntax enable
+set background=dark
 
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 call plug#begin()
@@ -30,6 +43,9 @@ call plug#begin()
 	Plug 'wOrp/ale'
 	Plug 'skaji/syntax-check-perl'
 	Plug 'NLKNguyen/papercolor-theme'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'ncm2/ncm2'
+    Plug 'roxma/nvim-yarp'
 call plug#end()
 
 highlight! link SignColumn LineNr
@@ -47,3 +63,10 @@ let g:ale_perl_perl_options = '%s'
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+
+packadd! dracula
+syntax enable
+colorscheme dracula
+
+set completeopt=noinsert,menuone,noselect
+autocmd BufEnter * call ncm2#enable_for_buffer()
