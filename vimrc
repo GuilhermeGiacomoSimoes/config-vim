@@ -46,6 +46,13 @@ call plug#begin()
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'ncm2/ncm2'
     Plug 'roxma/nvim-yarp'
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  	Plug 'wokalski/autocomplete-flow'
+    Plug 'Shougo/neosnippet'
+  	Plug 'Shougo/neosnippet-snippets'
+	Plug 'codota/tabnine-vim'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 highlight! link SignColumn LineNr
@@ -70,3 +77,9 @@ colorscheme dracula
 
 set completeopt=noinsert,menuone,noselect
 autocmd BufEnter * call ncm2#enable_for_buffer()
+
+
+let g:deoplete#enable_at_startup = 1
+
+let g:neosnippet#enable_completed_snippet = 1
+let g:autocomplete_flow#insert_paren_after_function = 0
