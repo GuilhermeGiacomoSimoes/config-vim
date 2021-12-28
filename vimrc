@@ -18,16 +18,27 @@ set noswapfile
 set path+=**
 set wildmenu
 set inccommand=split
+set splitright
 
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_config_present = 1
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_liststyle = 0 
 let g:netrw_browse_split = 2 
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 let mapleader="\<space>"
+
+autocmd filetype netrw call Netrw_mappings()
+function! Netrw_mappings()
+  noremap <buffer>% :call CreateInPreview()<cr>
+endfunction
+
+function! CreateInPreview()
+  let l:filename = input("filename: ")
+  execute 'vsp ' . b:netrw_curdir.'/'.l:filename
+endf
 
 let g:coc_global_extensions = [
   \ 'coc-snippets',
