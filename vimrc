@@ -19,6 +19,10 @@ set path+=**
 set wildmenu
 set inccommand=split
 set splitright
+set fileencoding=latin1
+
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0 
@@ -26,7 +30,7 @@ let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 let mapleader="\<space>"
-let g:vim_markdown_folding_disabled = 1
+set equalprg=xmllint\ --format\ -
 
 autocmd filetype netrw call Netrw_mappings()
 function! Netrw_mappings()
@@ -46,11 +50,26 @@ set clipboard+=unnamedplus
 syntax enable
 set background=dark
 
+function! Rnvar()
+  let word_to_replace = expand("<cword>")
+  let replacement = input("new name: ")
+  execute '%s/\(\W\)' . word_to_replace . '\(\W\)/\1' . replacement . '\2/gc'
+endfunction
+
 call plug#begin()
 	Plug 'terryma/vim-multiple-cursors'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'itchyny/lightline.vim'
 	Plug 'morhetz/gruvbox'
+	Plug 'pangloss/vim-javascript'
+	Plug 'leafgarland/typescript-vim'
+	Plug 'peitalin/vim-jsx-typescript'
+	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+	Plug 'jparise/vim-graphql'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	let g:coc_global_extensions = [
+	  \ 'coc-tsserver'
+	  \ ]
 call plug#end()
 
 highlight! link SignColumn LineNr
@@ -60,3 +79,4 @@ filetype plugin indent on
 colorscheme gruvbox
 set background=dark    " Setting dark mode
 syntax enable
+set completeopt=noinsert,menuone,noselect
