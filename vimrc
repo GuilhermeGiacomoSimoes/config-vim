@@ -32,6 +32,10 @@ let g:netrw_winsize = 20
 let mapleader="\<space>"
 set equalprg=xmllint\ --format\ -
 
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+let g:prettier#autoformat = 1
+nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
+
 autocmd filetype netrw call Netrw_mappings()
 function! Netrw_mappings()
   noremap <buffer>% :call CreateInPreview()<cr>
@@ -70,6 +74,9 @@ call plug#begin()
 	let g:coc_global_extensions = [
 	  \ 'coc-tsserver'
 	  \ ]
+	Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
 call plug#end()
 
 highlight! link SignColumn LineNr
