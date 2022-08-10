@@ -19,7 +19,7 @@ set path+=**
 set wildmenu
 set inccommand=split
 set splitright
-set fileencoding=latin1
+set clipboard^=unnamed,unnamedplus
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
@@ -48,8 +48,6 @@ endf
 
 nnoremap <leader>; A; <esc>
 nnoremap <leader>, A, <esc>
-
-set clipboard+=unnamedplus
 
 syntax enable
 set background=dark
