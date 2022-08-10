@@ -19,7 +19,6 @@ set path+=**
 set wildmenu
 set inccommand=split
 set splitright
-set clipboard^=unnamed,unnamedplus
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
@@ -32,8 +31,17 @@ let g:netrw_winsize = 20
 let mapleader="\<space>"
 set equalprg=xmllint\ --format\ -
 
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-prettier'
+  \ ]
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 1
+
 nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
 
 autocmd filetype netrw call Netrw_mappings()
@@ -48,6 +56,10 @@ endf
 
 nnoremap <leader>; A; <esc>
 nnoremap <leader>, A, <esc>
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
+
+set clipboard+=unnamedplus
 
 syntax enable
 set background=dark
@@ -63,16 +75,9 @@ call plug#begin()
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'itchyny/lightline.vim'
 	Plug 'morhetz/gruvbox'
-	Plug 'pangloss/vim-javascript'
-	Plug 'leafgarland/typescript-vim'
-	Plug 'peitalin/vim-jsx-typescript'
 	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 	Plug 'jparise/vim-graphql'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	let g:coc_global_extensions = [
-	  \ 'coc-tsserver'
-	  \ ]
-	Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 call plug#end()
