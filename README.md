@@ -1,7 +1,10 @@
 # my config vim
 
-## Install dependency for youCompleteMe
-	sudo apt install build-essential cmake vim-nox python3-dev
+## To install fzf
+	brew install fzf
+
+## To install Rg
+	brew install ripgrep 
 
 ## To install vim-plug
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

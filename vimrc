@@ -1,5 +1,3 @@
-let extension = expand('%:e')
-
 syntax on
 
 filetype plugin on
@@ -20,9 +18,6 @@ set wildmenu
 set inccommand=split
 set splitright
 
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0 
 let g:netrw_browse_split = 2 
@@ -39,15 +34,15 @@ let g:coc_global_extensions = [
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 1
 
-nnoremap <silent><leader>1 :source ~/.vimrc \| :PlugInstall<CR>
+nnoremap <silent><leader>1 :source ~/.config/nvim/init.vim \| :PlugInstall<CR>
 
 autocmd filetype netrw call Netrw_mappings()
 function! Netrw_mappings()
   noremap <buffer>% :call CreateInPreview()<cr>
 endfunction
+
+map <C-p> :Files <CR>
 
 function! CreateInPreview()
   let l:filename = input("filename: ")
@@ -56,10 +51,11 @@ endf
 
 nnoremap <leader>; A; <esc>
 nnoremap <leader>, A, <esc>
-nnoremap <leader>y "+y
-nnoremap <leader>p "+p
 
-set clipboard+=unnamedplus
+command! -bang -nargs=* Rg
+	\ call fzf#vim#grep(
+	\ 'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>),1,
+	\ fzf#vim#with_preview(), <bang>0)
 
 syntax enable
 set background=dark
