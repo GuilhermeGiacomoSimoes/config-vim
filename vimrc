@@ -26,15 +26,6 @@ let g:netrw_winsize = 20
 let mapleader="\<space>"
 set equalprg=xmllint\ --format\ -
 
-let g:coc_global_extensions = [
-  \ 'coc-tsserver',
-  \ 'coc-prettier'
-  \ ]
-
-inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-
-command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-
 nnoremap <silent><leader>1 :source ~/.config/nvim/init.vim \| :PlugInstall<CR>
 
 autocmd filetype netrw call Netrw_mappings()
@@ -70,9 +61,6 @@ call plug#begin()
 	Plug 'terryma/vim-multiple-cursors'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'itchyny/lightline.vim'
-	Plug 'morhetz/gruvbox'
-	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-	Plug 'jparise/vim-graphql'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
@@ -82,7 +70,4 @@ highlight! link SignColumn LineNr
 
 filetype plugin indent on
 
-colorscheme gruvbox
-set background=dark    " Setting dark mode
-syntax enable
 set completeopt=noinsert,menuone,noselect
