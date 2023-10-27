@@ -1,5 +1,8 @@
 # my config vim
 
+## Install CCLS
+    sudo pacman -S ccls
+
 ## To install fzf
 	brew install fzf
 
