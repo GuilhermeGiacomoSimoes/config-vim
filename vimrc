@@ -17,6 +17,7 @@ set path+=**
 set wildmenu
 set inccommand=split
 set splitright
+set tags+=./tags;/
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0 
@@ -43,12 +44,15 @@ endf
 nnoremap <leader>; A; <esc>
 nnoremap <leader>, A, <esc>
 
+let g:ale_linters = {
+    \ 'c': ['clang'],
+    \ }
+
 command! -bang -nargs=* Rg
 	\ call fzf#vim#grep(
 	\ 'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>),1,
 	\ fzf#vim#with_preview(), <bang>0)
 
-syntax enable
 set background=dark
 
 function! Rnvar()
@@ -64,6 +68,8 @@ call plug#begin()
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
+	Plug 'dense-analysis/ale'
+	Plug 'projekt0n/github-nvim-theme'
 call plug#end()
 
 highlight! link SignColumn LineNr
@@ -71,3 +77,7 @@ highlight! link SignColumn LineNr
 filetype plugin indent on
 
 set completeopt=noinsert,menuone,noselect
+
+autocmd FileType gitcommit setlocal textwidth=72
+
+colorscheme github_dark_dimmed
