@@ -1,14 +1,17 @@
 {
-"languageserver": {
-  "ccls": {
-    "command": "ccls",
-    "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
-    "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
-    "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
+    "languageserver": {
+        "clangd": {
+            "command": "clangd",
+            "filetypes": ["c", "cpp", "objc", "objcpp"]
+        },
+        "rust-analyzer": {
+            "command": "rust-analyzer",
+            "filetypes": ["rust"],
+			"rustup.overrideCommand": "rustup run stable cargo",
+  			"procMacro.enable": true,
+  			"cargo.features": null
+
         }
-      }
-  }
+    }
 }
-}
+
