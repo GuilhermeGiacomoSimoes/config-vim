@@ -53,7 +53,24 @@ command! -bang -nargs=* Rg
 	\ 'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>),1,
 	\ fzf#vim#with_preview(), <bang>0)
 
-set background=dark
+let g:codeium_disable_bindings = 1
+imap <script><silent><nowait><expr> <C-j> codeium#Accept()
+imap <C-k>   <Cmd>call codeium#CycleCompletions(1)<CR>
+imap <C-l>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+imap <C-x>   <Cmd>call codeium#Clear()<CR>
+
+function! CheckBackspace() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! Rnvar()
   let word_to_replace = expand("<cword>")
@@ -69,7 +86,7 @@ call plug#begin()
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 	Plug 'dense-analysis/ale'
-	Plug 'projekt0n/github-nvim-theme'
+	Plug 'Exafunction/codeium.vim'
 call plug#end()
 
 highlight! link SignColumn LineNr
@@ -80,4 +97,4 @@ set completeopt=noinsert,menuone,noselect
 
 autocmd FileType gitcommit setlocal textwidth=72
 
-colorscheme github_dark_dimmed
+colorscheme desert 
