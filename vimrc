@@ -19,6 +19,7 @@ set inccommand=split
 set splitright
 set tags+=./tags;/
 
+let g:chatline_chat_column = 0
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0 
 let g:netrw_browse_split = 2 
@@ -46,6 +47,7 @@ nnoremap <leader>, A, <esc>
 
 let g:ale_linters = {
     \ 'c': ['clang'],
+	\ 'rust': []
     \ }
 
 command! -bang -nargs=* Rg
